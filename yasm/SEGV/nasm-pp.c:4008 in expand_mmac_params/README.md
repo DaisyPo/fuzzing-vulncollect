@@ -22,9 +22,11 @@ SUMMARY: AddressSanitizer: SEGV modules/preprocs/nasm/nasm-pp.c:4008 in expand_m
 ==3645333==ABORTING
 ```
 ## Command Input:
-./yasm poc-file  \n
+./yasm poc-file 
+
 [poc-file.zip](https://github.com/yasm/yasm/files/11252936/poc-file.zip)
-\n  poc-file is attached.
+
+poc-file is attached.
 
 ## Environment
 OS: Ubuntu 20.04.1
