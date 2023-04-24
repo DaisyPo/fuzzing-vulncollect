@@ -31,7 +31,33 @@ AddressSanitizer can not provide additional info.
 SUMMARY: AddressSanitizer: FPE /root/target/latest/20230404/xpdf-4.04/xpdf/Stream.cc:370:23 in ImageStream::ImageStream(Stream*, int, int, int)
 ==2894348==ABORTING
 ```
+## GDB analyze
+![image](https://user-images.githubusercontent.com/56296073/233991750-3e58d70d-7de7-4cdc-a074-41b185709df9.png)
+It's a division-by-zero error.
+## Source Code
+```
+ImageStream::ImageStream(Stream *strA, int widthA, int nCompsA, int nBitsA) {
+  int imgLineSize;
+
+  str = strA;
+  width = widthA;
+  nComps = nCompsA;
+  nBits = nBitsA;
+
+  nVals = width * nComps;
+  inputLineSize = (nVals * nBits + 7) >> 3;
+  if (width > INT_MAX / nComps ||
+      nVals > (INT_MAX - 7) / nBits) {
+    // force a call to gmallocn(-1,...), which will throw an exception
+    inputLineSize = -1;
+  }
+  ......
+Omit remaining code
+  ......
+}
+  ```
 ## Version
 xpdf:4.04
 ## POC File
 [poc-file.zip](https://github.com/DaisyPo/fuzzing-vulncollect/files/11310114/poc-file.zip)
+
