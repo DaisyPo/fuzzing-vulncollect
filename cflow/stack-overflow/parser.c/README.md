@@ -3,18 +3,25 @@ https://www.gnu.org/software/cflow/
 
 ## Description
 There exists stack-overflow because of recursive call of void func_body() and void parse_variable_declaration(Ident *ident, int parm) at cflow-1.7/src/parser.c
-## My test program
-cflow 
+## Environment
+OS: Ubuntu 20.04.1
+
+Release: cflow 1.7(cflow-latest)
+
+https://ftp.gnu.org/gnu/cflow/cflow-latest.tar.gz
+
+Program:cflow
+
+To reproduce the problem, we need to build cflow with asan:
+```
+CFLAGS="-fsanitize=address -g -O0" CXXFLAGS="-fsanitize=address -g -O0" \
+  ./configure
+```
 ## Command and argument
 ./cflow -o /dev/null poc-file
 
 poc-file is attached below.
 
-## Compile cflow with asan
-```
-CFLAGS="-fsanitize=address -g -O0" CXXFLAGS="-fsanitize=address -g -O0" \
-  ./configure
-```
 ## ASAN Info
 ```
 AddressSanitizer:DEADLYSIGNAL
@@ -274,7 +281,6 @@ SUMMARY: AddressSanitizer: stack-overflow /root/llvm-project-llvmorg-10.0.1/comp
 ==2158725==ABORTING
 ```
 
-## Version
-cflow 1.7 (https://ftp.gnu.org/gnu/cflow/cflow-latest.tar.gz)
+
 ## POC File
 [poc-file.zip](https://github.com/DaisyPo/fuzzing-vulncollect/files/11343936/poc-file.zip)
