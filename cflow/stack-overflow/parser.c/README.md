@@ -275,6 +275,6 @@ SUMMARY: AddressSanitizer: stack-overflow /root/llvm-project-llvmorg-10.0.1/comp
 ```
 
 ## Version
-cflow 1.7(https://ftp.gnu.org/gnu/cflow/cflow-1.7.tar.gz)
+cflow 1.7 (https://ftp.gnu.org/gnu/cflow/cflow-latest.tar.gz)
 ## POC File
 [poc-file.zip](https://github.com/DaisyPo/fuzzing-vulncollect/files/11343936/poc-file.zip)
