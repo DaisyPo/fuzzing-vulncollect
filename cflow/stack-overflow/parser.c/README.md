@@ -9,6 +9,12 @@ cflow 1.7
 ./cflow -o /dev/null poc-file
 
 poc-file is attached below.
+
+## Compile cflow with asan
+```
+CFLAGS="-fsanitize=address -g -O0" CXXFLAGS="-fsanitize=address -g -O0" \
+  ./configure
+```
 ## ASAN Info
 ```
 AddressSanitizer:DEADLYSIGNAL
