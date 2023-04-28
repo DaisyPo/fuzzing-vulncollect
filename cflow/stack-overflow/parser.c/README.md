@@ -16,7 +16,7 @@ To reproduce the problem, we need to build cflow with asan:
 ```
 CFLAGS="-fsanitize=address -g -O0" CXXFLAGS="-fsanitize=address -g -O0" \
   ./configure
-  make
+  make CC=clang CXX=clang++
   make install
 ```
 ## Command and argument
